@@ -4,7 +4,11 @@ let promise = new Promise((resolve,reject)=>{
 });
 let promise2 = promise.then(data=>{
     return new Promise((resolve,reject)=>{
-        reject(123);
+        resolve(new Promise((resolve,reject)=>{
+            resolve(new Promise((resolve,reject)=>{
+                resolve('ok')
+            }));
+        }));
     })
 })
 .then(data=>{
