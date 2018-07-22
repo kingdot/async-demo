@@ -90,10 +90,12 @@ event.on(function(data){
     if(data.length === 2){
         console.log(data); // 最终的结果
     }
-})
+});
 fs.readFile('1.txt','utf8',function(err,data){ 
     event.emit(data);
 })
 fs.readFile('2.txt','utf8',function(err,data){ 
     event.emit(data);
 });
+
+// 默认读取文件 在vscode 中读取的永远是根目录下的文件
