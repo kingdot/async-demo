@@ -42,11 +42,14 @@ read('1.txt','utf8').then(data=>{
 //     throw new Error();
 // });
 
-// let promise = new Promise((resolve,reject)=>{
-//     resolve();
-// });
-// promise.then(()=>{
+// jquery的链式调用 return this
 
-// },()=>{
-
-// })
+let promise = new Promise((resolve,reject)=>{
+    resolve();
+});
+// 返回的必须是一个新的promise 因为promise成功后不能在走失败
+// 只能创建一个新的promise 执行逻辑
+let promise2 = promise.then(data=>{
+    // promise成功了 如果返回的this 那不能在走向失败
+    throw new Error();
+})
