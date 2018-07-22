@@ -40,7 +40,6 @@ Promise.race([read('2.txt','utf8'),read('1.txt','utf8')]).then(data=>{
 
 
 
-
 // catch的实现就是基于then的 可以不传成功
 // Promise.reject(123).then().catch(e=>{
 //     console.log(e);
