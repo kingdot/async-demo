@@ -41,7 +41,7 @@ Promise.prototype.then = function(onFulfilled,onRejected){
         });
         self.onRejectedCallbacks.push(()=>{
             onRejected(self.reason)
-        })
+        });
     }
 }
 module.exports = Promise;
