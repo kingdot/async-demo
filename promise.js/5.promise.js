@@ -129,5 +129,31 @@ Promise.resolve = function(value){
 Promise.prototype.catch = function(onRejected){
     // 默认不写成功
     return this.then(null,onRejected);
+};
+// all方法
+Promise.all = function(promises){
+    return new Promise((resolve,reject)=>{
+        let arr = [];
+        let i = 0;
+        function processData(index,data){
+            arr[index] = data;
+            if(++i == promises.length){
+                resolve(arr);
+            }
+        }
+        for(let i = 0;i<promises.length;i++){
+            promises[i].then(data=>{ // data是成功的结果
+                processData(i,data);
+            },reject);
+        }
+    })
+}
+// 以请求最快的为准
+Promise.race = function(promises){
+    return new Promise((resolve,reject)=>{
+        for(let i = 0;i<promises.length;i++){
+            promises[i].then(resolve,reject);
+        }
+    })
 }
 module.exports = Promise;
