@@ -5,10 +5,8 @@ let promise = new Promise((resolve,reject)=>{
 let promise2 = promise.then(data=>{
     return new Promise((resolve,reject)=>{
         resolve(new Promise((resolve,reject)=>{
-            resolve(new Promise((resolve,reject)=>{
-                resolve('ok')
-            }));
-        }));
+            resolve(123)
+        }))
     })
 })
 .then(data=>{
