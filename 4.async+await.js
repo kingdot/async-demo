@@ -21,3 +21,6 @@ r().then(data=>{
     console.log(er)
 });
 // async + await = generator + co
+
+
+// callback  promise  generator async+await
