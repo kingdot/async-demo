@@ -19,7 +19,7 @@ fn();
 fn();
 
 // 2.一个函数返回一个函数
-// 判断类型 
+// 判断类型
 // typeof instanceof constructor Object.prototype.toString.call
 function isType(type) { // [object String]
     return function (content) {
@@ -56,7 +56,7 @@ console.log(util.isString('hello'));
 // });
 // 2.多个回调同步结果的情况
 // 1) 通过after函数
-// 2) 发布订阅 redux vue 
+// 2) 发布订阅 redux vue
 // let fs = require('fs');
 // function after(times,callback){
 //     let arr = [];
@@ -76,14 +76,17 @@ console.log(util.isString('hello'));
 // 发布订阅 发布(发布时一次执行) 订阅(先把他暂存起来)
 let fs = require('fs');
 let event = {
-    arr:[],
+    arr:[], // 监听函数数组
     result:[],
     on(fn){
         this.arr.push(fn);
     },
-    emit(data){
-        this.result.push(data);
+    emit(data){ // 发布时，所有监听都执行，并不是异步执行
+        this.result.push(data); // 发射的数据存到result里面
         this.arr.forEach(fn=>fn(this.result));
+        /*等价下面写法：
+        * this.arr.forEach((func)=>{func(this.result);})
+        * */
     }
 }
 event.on(function(data){
